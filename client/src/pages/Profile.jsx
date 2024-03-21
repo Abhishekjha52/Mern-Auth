@@ -12,15 +12,16 @@ export default function Profile() {
   const [imagePercent, setImagePercent] = useState(0);
   const [imageError, setImageError] = useState(false);
   const [formData, setFormData] = useState({});
+  const {updateSuccess, setUpdateSuccess} = useState(false);
 
-  const { currentUser } = useSelector(state => state.user);
+  const { currentUser, loading, error  } = useSelector((state) => state.user);
   useEffect(() => {
     if (image) {
       handleImageUpload(image);
     }
   }, [image]);
 
-  const handleImageUpload = (image) => {
+  const handleImageUpload = async (image) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + image.name;
     const storageRef = ref(storage, fileName);
@@ -49,24 +50,24 @@ export default function Profile() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventdefault();
-    try{
+    e.preventDefault();
+    try {
       dispatch(updateUserStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method : 'POST',
-        headers : {
-          'Content-Type' : "application/json",
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        body : JSON.stringify(formData),
+        body: JSON.stringify(formData),
       });
-
       const data = await res.json();
-      if(data.success === false){
+      if (data.success === false) {
         dispatch(updateUserFailure(data));
         return;
       }
       dispatch(updateUserSuccess(data));
-    }catch(error){
+      setUpdateSuccess(true);
+    } catch (error) {
       dispatch(updateUserFailure(error));
     }
   };
@@ -119,7 +120,7 @@ export default function Profile() {
           onChange={handleChange}
         />
         <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
-          Update
+          {loading ? "Loading..." : "Update"}
         </button>
 
       </form>
@@ -128,6 +129,8 @@ export default function Profile() {
         <span className="text-red-700 cursor-pointer">Delete Account</span>
         <span className="text-red-700 cursor-pointer">Sign Out</span>
       </div>
+      <p className='text-red-700 mt-5'>{error && "Something went wrong!"}</p>
+      <p className='text-green-700 mt-5'>{updateSuccess && "User is updated successfully!!"}</p>
 
     </div>
   );
