@@ -38,17 +38,14 @@ Before running this application, make sure you have the following installed:
 ### Installation
 
 1. Clone the repository:
-
    ```bash
    git clone https://github.com/Abhishekjha52/Mern-Auth.git
 
 2. Navigate to the project directory:
-
   ```bash
   cd Mern-Auth
 
 3. Install dependencies:
-
   ```bash
   npm install
 
