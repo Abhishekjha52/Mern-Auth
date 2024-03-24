@@ -1,4 +1,5 @@
 import React from 'react';
+import { Footer } from '../components/Footer';
 
 export default function Home () {
   return (
@@ -23,6 +24,8 @@ export default function Home () {
         web applications with authentication using the MERN stack. Feel free to
         use it as a template for your own projects!
       </p>
+
+      <Footer/>
 
     </div>
   );

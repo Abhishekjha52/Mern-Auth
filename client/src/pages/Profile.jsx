@@ -187,6 +187,7 @@ export default function Profile () {
         {updateSuccess && 'User is updated successfully!!'}
       </p>
 
+      <Footer />
     </div>
   );
 }

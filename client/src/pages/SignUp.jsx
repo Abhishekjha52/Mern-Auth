@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import OAuth from '../components/OAuth';
+import { Footer } from '../components/Footer';
 export default function SignUp () {
   const [formData, setFormData] = useState ({});
   const [error, setError] = useState (false);
@@ -81,6 +82,7 @@ export default function SignUp () {
 
       <p className="text-red-700 mt-5">{error && 'Something went wrong!!'}</p>
 
+      <Footer/>
     </div>
   );
 }

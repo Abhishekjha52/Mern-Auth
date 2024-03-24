@@ -1,4 +1,5 @@
 import React from 'react';
+import { Footer } from '../components/Footer';
 
 export default function About () {
   return (
@@ -23,6 +24,7 @@ export default function About () {
         use it as a template for your own projects!
       </p>
 
+      <Footer/>
     </div>
   );
 }
