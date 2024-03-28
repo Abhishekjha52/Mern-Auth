@@ -18,6 +18,7 @@ import {
   deleteUserFailure,
   signOut,
 } from '../redux/user/userSlice';
+import { Footer } from '../components/Footer';
 export default function Profile () {
   const dispatch = useDispatch ();
   const fileRef = useRef (null);
