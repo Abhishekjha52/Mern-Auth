@@ -1,0 +1,40 @@
+1. Installation
+
+We use React with Vite because it's simple and faster than create react app method
+
+Command - npm create vite@latest client
+		npx create react app folder_name
+	
+Dependencies - packages that are used in the project with its version number
+Dev dependencies - that are used in development phase only not in testing or production env
+
+Install tailwind from its website and follow necessary steps
+
+2. Create pages and Routes of pages
+
+Link:
+Part of the React Router library. Used to create clickable links on the UI that trigger navigation to different routes. You define the destination route using the "to" prop. 
+
+Route:
+Defines a mapping between a URL path and a React component. When a user visits a URL matching a route's "path" attribute, the corresponding component is rendered. Used to manage the different views or pages within your application based on the URL. 
+
+While linking Home, About...pages to redirect to its respective pages, we didn't use anchor tag because it refreshes the page, hence we used Link from react
+
+In API, the file is index.js, because in package.json file mail file name is Index.js, we can change the filename based on main file name present in index.js
+
+When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
+
+3. Connect to the DB (MongoDB)
+
+While connecting to DB, we require URI from DB platform, but we store that URI in .env file for security purposes.
+
+URI - Uniform Resource identifier which identifies a resource
+URL - Uniform Resource Locator which locates it.
+
+URL is a type of URI
+
+3. Creating User models
+
+
+
+
