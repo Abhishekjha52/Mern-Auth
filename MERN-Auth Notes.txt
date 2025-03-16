@@ -35,6 +35,47 @@ URL is a type of URI
 
 3. Creating User models
 
+In Mongoose, setting { timestamps: true } in the schema automatically adds two fields to each document in the collection:
 
+createdAt – Stores the date and time when the document was created.
+updatedAt – Stores the date and time when the document was last updated.
+
+How It Works:
+When a new user is created, Mongoose automatically sets the createdAt and updatedAt fields with the current timestamp.
+When the user document is updated, Mongoose automatically updates the updatedAt field.
+
+Example:
+If you create a new user:
+
+const newUser = await User.create({
+  username: 'john_doe',
+  email: 'john@example.com',
+  password: 'securepassword',
+});
+console.log(newUser);
+
+The saved document will look like this:
+{
+  "_id": "65a1b2c3d4e5f67890123456",
+  "username": "john_doe",
+  "email": "john@example.com",
+  "password": "securepassword",
+  "profilePicture": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
+  "createdAt": "2025-03-02T12:00:00.000Z",
+  "updatedAt": "2025-03-02T12:00:00.000Z",
+  "__v": 0
+}
+Later, if the user updates their profile, the updatedAt field will automatically change to the new timestamp.
+
+This feature is useful for tracking when records were created or modified without manually setting date fields.
+
+4. Routes
+
+We use controllers to put all the logics and functions inside it.
+We generally write all the code in routes.js, but to make it clean and readable, we write all the logics in separate file called controller.js
+
+5. Auth Routes
+
+when we use post method, we require third party application to test an API, in our case we use postman API application
 
 

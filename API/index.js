@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 dotenv.config (); //Initialize dotenv for .end file to access it in index.js
 
+// Connect to DB
 mongoose
   .connect (process.env.MONGO)
   .then (() => {
@@ -18,7 +19,7 @@ mongoose
 
 const __dirname = path.resolve();
 
-const app = express ();
+const app = express (); 
 
 app.use(express.static(path.join(__dirname, "/client/dist")))
 
@@ -36,6 +37,7 @@ app.listen (3000, () => {
 app.use ('/api/user', userRoutes);
 app.use ('/api/auth', authRoutes);
 
+// Error handling
 app.use ((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Internal Server Error';

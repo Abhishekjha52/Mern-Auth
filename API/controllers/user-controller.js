@@ -1,6 +1,8 @@
 import User from '../models/usermodel.js';
 import {errorHandler} from '../utils/error.js';
 import bcryptjs from 'bcryptjs';
+
+// test API Check
 export const test = (req, res) => {
   res.json ({
     message: 'API is working!',
@@ -8,7 +10,6 @@ export const test = (req, res) => {
 };
 
 // Update user
-
 export const updateUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next (errorHandler (401, 'You can update only your account'));
@@ -39,7 +40,6 @@ export const updateUser = async (req, res, next) => {
 };
 
 // delete user
-
 export const deleteUser = async (req, res, next) => {
   if (req.user.id !== req.params.id) {
     return next (errorHandler (401, 'You can delete only your account!'));
