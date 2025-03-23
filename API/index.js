@@ -9,7 +9,7 @@ dotenv.config (); //Initialize dotenv for .end file to access it in index.js
 
 // Connect to DB
 mongoose
-  .connect (process.env.MONGO)
+  .connect ("mongodb+srv://abhishekkj522001:Abhishekjha@mern-auth-project.o1ok13n.mongodb.net/?retryWrites=true&w=majority&appName=mern-auth-project")
   .then (() => {
     console.log ('Connected to MONGODB');
   })
