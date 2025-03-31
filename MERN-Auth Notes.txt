@@ -78,4 +78,59 @@ We generally write all the code in routes.js, but to make it clean and readable,
 
 when we use post method, we require third party application to test an API, in our case we use postman API application
 
+6. SignUp functionality:-
 
+for signin and signup which is for authentication, we will have different routes and controllers.
+
+When we try to test the API in postman by sending username, email and password and try to console log in application, we get "undefined" 
+because by default we cannot send JSON to our application. Hence we use app.use(express.json()) line of code in index.js file
+
+For password encryption, we use 10 rounds of salt in bcrypt. hasSynced in bcrypt is asyncronous functionality
+
+7. Middlewares for Error Handling (Also custom errors)
+
+We create a middleware using app.use(err, res, req, next), and in signin and signup, instead of writing res.json(statusCode) message, we directly write next(error)
+
+We add proxy in vote.config.js to not always write the whole link name htts://localhosr:3000/...
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api' : {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+});
+
+8. SignIn functionality
+
+While signing in, we always create an unique token, in our case we use user id whic is unique and also we use secret token which is stored in .env file
+When verifying this user, this secret token comes in handy
+
+const {password: hashedPassword, ...rest} = validUser._doc; //not sending password to the client, hence removing it from the data
+we are writing ._doc just to get the info present under _doc tree, of not added all other irrelevalant info about curr user object appears
+
+const expiryDate = new Date (Date.now () + 3600000); //1 hour is the time a user can be signed in
+
+9. Adding Redux toolkit
+
+We store sign in information in global state to use it anywhere in the application, for that we use redux toolkit
+
+We create store.js and add Provider component in main.js to wrap up whole App component of our application
+Final step is creating userslice.js where reducers are defined for every state in application
+
+In Redux, reducers are pure functions that determine how the application's state changes in response to actions, taking the current state and an action as input and returning the new state. 
+
+In Redux, a payload is an optional property of an action object that carries additional data related to the action. It is a way to pass data from the action creator to the reducer, allowing the reducer to perform specific tasks based on the action type and payload
+
+10. Redux-persist
+
+Redux Persist is a library used to persist and rehydrate Redux store state across browser or app sessions, ensuring data remains even after page reloads or app restarts, enhancing user experience and providing offline support. 
+
+Hence, even after reloading, the error message remains in the page and also in the redux store and browser localstorage
+
+To use persist, we wrap up the App component with persistgate in main.jsx and in store.js we create persist reducer
