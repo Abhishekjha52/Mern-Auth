@@ -11,7 +11,7 @@ export const test = (req, res) => {
 
 // Update user
 export const updateUser = async (req, res, next) => {
-  if (req.user.id !== req.params.id) {
+  if (req.user.id !== req.params.id) {//params is the value we give as inp to the route (/update/:id)
     return next (errorHandler (401, 'You can update only your account'));
   }
 

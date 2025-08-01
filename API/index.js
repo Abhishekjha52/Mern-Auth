@@ -28,7 +28,7 @@ app.get ('*', (req, res) => {
 });
 
 app.use (express.json ()); // to automatically parse JSON data from incoming requests
-app.use (cookieParser ());
+app.use (cookieParser ()); // The cookie-parser middleware in Node.js parses the Cookie header from HTTP requests and makes the cookies accessible in the req.cookies object, allowing you to easily access and manipulate cookie data within your application. 
 
 app.listen (3000, () => {
   console.log ('Server listening on port 3000');

@@ -1,136 +1,211 @@
 1. Installation
 
-We use React with Vite because it's simple and faster than create react app method
+  We use React with Vite because it's simple and faster than create react app method
 
-Command - npm create vite@latest client
-		npx create react app folder_name
-	
-Dependencies - packages that are used in the project with its version number
-Dev dependencies - that are used in development phase only not in testing or production env
+  Command - npm create vite@latest client
+      npx create react app folder_name
+    
+  Dependencies - packages that are used in the project with its version number
+  Dev dependencies - that are used in development phase only not in testing or production env
 
-Install tailwind from its website and follow necessary steps
+  Install tailwind from its website and follow necessary steps
 
 2. Create pages and Routes of pages
 
-Link:
-Part of the React Router library. Used to create clickable links on the UI that trigger navigation to different routes. You define the destination route using the "to" prop. 
+  Link:
+  Part of the React Router library. Used to create clickable links on the UI that trigger navigation to different routes. You define the destination route using the "to" prop. 
 
-Route:
-Defines a mapping between a URL path and a React component. When a user visits a URL matching a route's "path" attribute, the corresponding component is rendered. Used to manage the different views or pages within your application based on the URL. 
+  Route:
+  Defines a mapping between a URL path and a React component. When a user visits a URL matching a route's "path" attribute, the corresponding component is rendered. Used to manage the different views or pages within your application based on the URL. 
 
-While linking Home, About...pages to redirect to its respective pages, we didn't use anchor tag because it refreshes the page, hence we used Link from react
+  While linking Home, About...pages to redirect to its respective pages, we didn't use anchor tag because it refreshes the page, hence we used Link from react
 
-In API, the file is index.js, because in package.json file mail file name is Index.js, we can change the filename based on main file name present in index.js
+  In API, the file is index.js, because in package.json file mail file name is Index.js, we can change the filename based on main file name present in index.js
 
-When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
+  When set to "module", the type field allows a package to specify all .js files within are ES modules. If the "type" field is omitted or set to "commonjs", all .js files are treated as CommonJS.
 
 3. Connect to the DB (MongoDB)
 
-While connecting to DB, we require URI from DB platform, but we store that URI in .env file for security purposes.
+  While connecting to DB, we require URI from DB platform, but we store that URI in .env file for security purposes.
 
-URI - Uniform Resource identifier which identifies a resource
-URL - Uniform Resource Locator which locates it.
+  URI - Uniform Resource identifier which identifies a resource
+  URL - Uniform Resource Locator which locates it.
 
-URL is a type of URI
+  URL is a type of URI
 
-3. Creating User models
+4. Creating User models
 
-In Mongoose, setting { timestamps: true } in the schema automatically adds two fields to each document in the collection:
+  In Mongoose, setting { timestamps: true } in the schema automatically adds two fields to each document in the collection:
 
-createdAt – Stores the date and time when the document was created.
-updatedAt – Stores the date and time when the document was last updated.
+  createdAt – Stores the date and time when the document was created.
+  updatedAt – Stores the date and time when the document was last updated.
 
-How It Works:
-When a new user is created, Mongoose automatically sets the createdAt and updatedAt fields with the current timestamp.
-When the user document is updated, Mongoose automatically updates the updatedAt field.
+  How It Works:
+  When a new user is created, Mongoose automatically sets the createdAt and updatedAt fields with the current timestamp.
+  When the user document is updated, Mongoose automatically updates the updatedAt field.
 
-Example:
-If you create a new user:
+  Example:
+  If you create a new user:
 
-const newUser = await User.create({
-  username: 'john_doe',
-  email: 'john@example.com',
-  password: 'securepassword',
-});
-console.log(newUser);
+  const newUser = await User.create({
+    username: 'john_doe',
+    email: 'john@example.com',
+    password: 'securepassword',
+  });
+  console.log(newUser);
 
-The saved document will look like this:
-{
-  "_id": "65a1b2c3d4e5f67890123456",
-  "username": "john_doe",
-  "email": "john@example.com",
-  "password": "securepassword",
-  "profilePicture": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
-  "createdAt": "2025-03-02T12:00:00.000Z",
-  "updatedAt": "2025-03-02T12:00:00.000Z",
-  "__v": 0
-}
-Later, if the user updates their profile, the updatedAt field will automatically change to the new timestamp.
+  The saved document will look like this:
+  {
+    "_id": "65a1b2c3d4e5f67890123456",
+    "username": "john_doe",
+    "email": "john@example.com",
+    "password": "securepassword",
+    "profilePicture": "https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg",
+    "createdAt": "2025-03-02T12:00:00.000Z",
+    "updatedAt": "2025-03-02T12:00:00.000Z",
+    "__v": 0
+  }
+  Later, if the user updates their profile, the updatedAt field will automatically change to the new timestamp.
 
-This feature is useful for tracking when records were created or modified without manually setting date fields.
+  This feature is useful for tracking when records were created or modified without manually setting date fields.
 
-4. Routes
+5. Routes
 
-We use controllers to put all the logics and functions inside it.
-We generally write all the code in routes.js, but to make it clean and readable, we write all the logics in separate file called controller.js
+  We use controllers to put all the logics and functions inside it.
+  We generally write all the code in routes.js, but to make it clean and readable, we write all the logics in separate file called controller.js
 
-5. Auth Routes
+6. Auth Routes
 
-when we use post method, we require third party application to test an API, in our case we use postman API application
+  when we use post method, we require third party application to test an API, in our case we use postman API application
 
-6. SignUp functionality:-
+7. SignUp functionality:-
 
-for signin and signup which is for authentication, we will have different routes and controllers.
+  for signin and signup which is for authentication, we will have different routes and controllers.
 
-When we try to test the API in postman by sending username, email and password and try to console log in application, we get "undefined" 
-because by default we cannot send JSON to our application. Hence we use app.use(express.json()) line of code in index.js file
+  When we try to test the API in postman by sending username, email and password and try to console log in application, we get "undefined" 
+  because by default we cannot send JSON to our application. Hence we use app.use(express.json()) line of code in index.js file
 
-For password encryption, we use 10 rounds of salt in bcrypt. hasSynced in bcrypt is asyncronous functionality
+  For password encryption, we use 10 rounds of salt in bcrypt. hasSynced in bcrypt is asyncronous functionality
 
-7. Middlewares for Error Handling (Also custom errors)
+8. Middlewares for Error Handling (Also custom errors)
 
-We create a middleware using app.use(err, res, req, next), and in signin and signup, instead of writing res.json(statusCode) message, we directly write next(error)
+  We create a middleware using app.use(err, res, req, next), and in signin and signup, instead of writing res.json(statusCode) message, we directly write next(error)
 
-We add proxy in vote.config.js to not always write the whole link name htts://localhosr:3000/...
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      '/api' : {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        secure: false,
+  We add proxy in vote.config.js to not always write the whole link name htts://localhosr:3000/...
+  // https://vitejs.dev/config/
+  export default defineConfig({
+    plugins: [react()],
+    server: {
+      proxy: {
+        '/api' : {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          secure: false,
+        },
       },
     },
-  },
-});
+  });
 
-8. SignIn functionality
+9. SignIn functionality
 
-While signing in, we always create an unique token, in our case we use user id whic is unique and also we use secret token which is stored in .env file
-When verifying this user, this secret token comes in handy
+  While signing in, we always create an unique token, in our case we use user id whic is unique and also we use secret token which is stored in .env file
+  When verifying this user, this secret token comes in handy
 
-const {password: hashedPassword, ...rest} = validUser._doc; //not sending password to the client, hence removing it from the data
-we are writing ._doc just to get the info present under _doc tree, of not added all other irrelevalant info about curr user object appears
+  const {password: hashedPassword, ...rest} = validUser._doc; //not sending password to the client, hence removing it from the data
+  we are writing ._doc just to get the info present under _doc tree, of not added all other irrelevalant info about curr user object appears
 
-const expiryDate = new Date (Date.now () + 3600000); //1 hour is the time a user can be signed in
+  const expiryDate = new Date (Date.now () + 3600000); //1 hour is the time a user can be signed in
 
-9. Adding Redux toolkit
+10. Adding Redux toolkit
 
-We store sign in information in global state to use it anywhere in the application, for that we use redux toolkit
+  We store sign in information in global state to use it anywhere in the application, for that we use redux toolkit
 
-We create store.js and add Provider component in main.js to wrap up whole App component of our application
-Final step is creating userslice.js where reducers are defined for every state in application
+  We create store.js and add Provider component in main.js to wrap up whole App component of our application
+  Final step is creating userslice.js where reducers are defined for every state in application
 
-In Redux, reducers are pure functions that determine how the application's state changes in response to actions, taking the current state and an action as input and returning the new state. 
+  In Redux, reducers are pure functions that determine how the application's state changes in response to actions, taking the current state and an action as input and returning the new state. 
 
-In Redux, a payload is an optional property of an action object that carries additional data related to the action. It is a way to pass data from the action creator to the reducer, allowing the reducer to perform specific tasks based on the action type and payload
+  In Redux, a payload is an optional property of an action object that carries additional data related to the action. It is a way to pass data from the action creator to the reducer, allowing the reducer to perform specific tasks based on the action type and payload
 
-10. Redux-persist
+11. Redux-persist
 
-Redux Persist is a library used to persist and rehydrate Redux store state across browser or app sessions, ensuring data remains even after page reloads or app restarts, enhancing user experience and providing offline support. 
+  Redux Persist is a library used to persist and rehydrate Redux store state across browser or app sessions, ensuring data remains even after page reloads or app restarts, enhancing user experience and providing offline support. 
 
-Hence, even after reloading, the error message remains in the page and also in the redux store and browser localstorage
+  Hence, even after reloading, the error message remains in the page and also in the redux store and browser localstorage
 
-To use persist, we wrap up the App component with persistgate in main.jsx and in store.js we create persist reducer
+  To use persist, we wrap up the App component with persistgate in main.jsx and in store.js we create persist reducer
+
+12. Add OAuth
+  we create a separate route for google, we use signwithpopup to show available google accounts
+  If no accounts available and new user is signing up, we use default pic for profile photo which is added in user model
+  Also creating a random username and password for the new user.
+  For password, we use Math.random().toString(36).slice(-8) ->which means we create a password of 8 characters whic are taken randomly
+  For more secure password, we take 16 characters password
+
+13. Update Header component, Showing User image after successfull signing in place of sign In text
+  
+  In privateroute.jsx, we have included outlet component, whenever currentUser exists, we show the outlet(which shows the child compoent i.e; user's information) else redirect to sign-in page
+  In React Router, the <Outlet> component acts as a placeholder where child routes will be rendered within a parent route's component. 
+  It's crucial for creating nested routes and allows for shared layouts across different parts of your application. 
+
+  we are creating profile page and making it private using privateroute.js file.
+  It will redirect to user's information page i.e; profile component. Ig user is not signed in, he cannot access profile page, it will redirect them to sign in page.
+  After signing in, user can view their profile page on clicking their profile picture placed in place of sign in text
+  
+14. Complete Profile page UI
+  We use useSelector to get the current user information from browser
+  We use lots of css styling to make photo round, center to the div etc.
+  We can put the details of the current user on the field using "defaultValue" in input tags
+
+15. Upload image functionality
+  Since we need to upload image for the profile, we will need to access file from computer, so for that we use input tag for file
+  This input tag should be superimposed with the profile picture with the help of useRef hook in react and we use hidden to hide the choose file button 
+  We use useref ro refer to the file upload tag from profile picture.
+  We will create a callback function (fileref.current.click), so when we click on img, file upload modal should appear
+
+  Also, in input tag, we use accept=image/* which means we only accept image files for profile picture in input tag
+  We can set rules in Firrebase that only image files are allowed to insert
+  The rule set in firebase is below:
+  rules_version = '2';
+
+// Craft rules based on data in your Firestore database
+// allow write: if firestore.get(
+//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read;
+      allow write: if
+      request.resource.size < 2 * 1024 * 1024 &&     //Size<2MB
+      request.resource.contentType.matches('image/.*')
+    }
+  }
+  
+}
+
+  We use useState hook, when we upload image, state changes and we access it by using onChnage call back
+  And to store that image file to storage, we use useEffect which runs whenever we try to upload an image using input tag
+  useEffect (
+      () => {
+        if (image) {
+          handleImageUpload (image);
+        }
+      },
+      [image]
+    );
+
+  getStorage, ref and uploadBytesResumable are emthods from firebase
+  snapshot gives the information of the current object
+  We use progess bar to show upload percentage
+  When updatetask stores data into storage, we use that data to show on the UI using progress bar and 
+  if not successfully uploaded we set image error state to true and 
+  finally we update the profile picture field to that new uploaded profilepic using setformdata state
+
+  To show the progress bar on the UI, we use P tag below the handleImageUpload
+
+
+16. Create Update API
+  Before updating, we need verifytoken function to verify the user, so we create a file called verifytoken in utils folder
+  In function  jwt.verify() we send token and jwt_secret value and in response we either get error or user details
+  While defining route of update user, we use updateduser function in controller, the values which are beign updated in the fields will be updated in the DB using set method
+  
